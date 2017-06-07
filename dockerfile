@@ -5,8 +5,8 @@ MAINTAINER Robert Franjkovic <robert.franjkovic@deutschebahn.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-    https_proxy=https://webproxy.aws.db.de:8080 \
-    http_proxy=http://webproxy.aws.db.de:8080 \
+    https_proxy=https://dmzproxy.tech.rz.db.de:8080 \
+    http_proxy=http://dmzproxy.tech.rz.db.de:8080 \
     CLUSTER_NAME="vendo-elk" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
@@ -25,14 +25,10 @@ RUN set -x \
   && chmod +x /usr/local/bin/gosu \
   && gosu nobody true
 
-
 WORKDIR /opt
 
-
 RUN useradd -ms /bin/bash elasticsearch \
-        66
         && yum install -y net-tools wget which openssl
-
 
 RUN cd /opt
 
@@ -44,9 +40,7 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearc
 
 COPY /config/*.* /opt/elasticsearch/config/
 
-
 RUN chown -R elasticsearch:elasticsearch /opt/
-
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
