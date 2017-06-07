@@ -25,14 +25,10 @@ RUN set -x \
   && chmod +x /usr/local/bin/gosu \
   && gosu nobody true
 
-
 WORKDIR /opt
 
-
 RUN useradd -ms /bin/bash elasticsearch \
-        66
         && yum install -y net-tools wget which openssl
-
 
 RUN cd /opt
 
@@ -44,9 +40,7 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearc
 
 COPY /config/*.* /opt/elasticsearch/config/
 
-
 RUN chown -R elasticsearch:elasticsearch /opt/
-
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
