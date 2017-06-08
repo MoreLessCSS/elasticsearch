@@ -20,4 +20,3 @@ fi
 /run/miscellaneous/index_level_settings.sh
 
 
-fg

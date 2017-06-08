@@ -5,8 +5,8 @@ MAINTAINER Robert Franjkovic <robert.franjkovic@deutschebahn.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-    https_proxy=https://dmzproxy.tech.rz.db.de:8080 \
-    http_proxy=http://dmzproxy.tech.rz.db.de:8080 \
+    https_proxy=webproxy.aws.db.de:8080 \
+    http_proxy=webproxy.aws.db.de:8080 \
     CLUSTER_NAME="vendo-elk" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
@@ -47,6 +47,6 @@ RUN chmod +x -R /run/
 
 USER elasticsearch
 
-ENTRYPOINT ["/run/entrypoint.sh"]
+#ENTRYPOINT ["/run/entrypoint.sh"]
 
 CMD ["/opt/elasticsearch/bin/elasticsearch"]
