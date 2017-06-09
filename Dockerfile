@@ -1,20 +1,18 @@
-#dockerfile for ES_54 based on Deutsche Bahn vendo-st-docker-prod-local.bahnhub.tech.rz.db.de/vendo-base-image-jre:1.8.0.131
-FROM vendo-st-docker-prod-local.bahnhub.tech.rz.db.de/vendo-base-image-jre:1.8.0.131
+#Docker default CentosJava image
+FROM nimmis/java-centos
 
-MAINTAINER Robert Franjkovic <robert.franjkovic@deutschebahn.com>
+MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-    https_proxy=webproxy.aws.db.de:8080 \
-    http_proxy=webproxy.aws.db.de:8080 \
-    CLUSTER_NAME="vendo-elk" \
+    CLUSTER_NAME="me" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
     NETWORK_HOST=0.0.0.0 \
     MINIMUM_MASTER_NODES=1 \
     MAXIMUM_LOCAL_STORAGE_NODES=1 \
     NODE_ATTR_RACK=centOS7 \
-    ELASTIC_PWD="to4get" \
+    ELASTIC_PWD="getme" \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
     HEAP_SIZE="1g"
