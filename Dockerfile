@@ -5,11 +5,8 @@ MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-<<<<<<< HEAD
-    CLUSTER_NAME="me" \
-=======
-    CLUSTER_NAME="meCustomer" \
->>>>>>> 8b8965314a2fbadf0c61c603253daa5a9f9ecaf0
+CLUSTER_NAME="me" \
+CLUSTER_NAME="meCustomer" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
     NETWORK_HOST=0.0.0.0 \
@@ -48,6 +45,7 @@ ADD ./src/ /run/
 RUN chmod +x -R /run/
 
 USER elasticsearch
+EXPOSE 9200:9200
 
 #ENTRYPOINT ["/run/entrypoint.sh"]
 
