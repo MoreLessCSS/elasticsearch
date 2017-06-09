@@ -5,7 +5,11 @@ MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
+<<<<<<< HEAD
     CLUSTER_NAME="me" \
+=======
+    CLUSTER_NAME="meCustomer" \
+>>>>>>> 8b8965314a2fbadf0c61c603253daa5a9f9ecaf0
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
     NETWORK_HOST=0.0.0.0 \
