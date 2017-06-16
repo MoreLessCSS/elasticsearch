@@ -16,7 +16,7 @@ else
         $@ &
 fi
 
-/run/miscellaneous/wait_until_started.sh
-/run/miscellaneous/index_level_settings.sh
+#/run/miscellaneous/wait_until_started.sh
+#/run/miscellaneous/index_level_settings.sh
 
 
