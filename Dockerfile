@@ -33,9 +33,6 @@ RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 RUN yum -y install elasticsearch
 
-COPY /config/*.* /opt/elasticsearch/config/
-
-
 RUN chown -R elasticsearch:elasticsearch /opt/
 
 ADD ./src/ /run/
