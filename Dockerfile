@@ -43,7 +43,6 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ “/sys/fs/cgroup” ]
-RUN /usr/sbin/init
 
 
 ### install gosu 1.9 for easy step-down from root
@@ -78,4 +77,4 @@ EXPOSE 9300:9300
 USER elasticsearch
 ENTRYPOINT ["/run/entrypoint.sh"]
 
-CMD ["/opt/elasticsearch/bin/elasticsearch"]
+CMD ["/usr/sbin/init"]
