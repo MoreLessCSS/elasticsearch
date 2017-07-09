@@ -42,7 +42,7 @@ RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s reposi
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
 
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
-    && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" /etc/elasticsearch/elasticsearch.yml
+    && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" /usr/share/elasticsearch/config/elasticsearch.yml
 
 RUN chown -R elasticsearch:elasticsearch /var/lib/elasticsearch
 RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/
