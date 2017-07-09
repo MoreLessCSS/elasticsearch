@@ -17,6 +17,9 @@ ENV ES_VERSION=5.4.0 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
     HEAP_SIZE="4g"
 
+RUN useradd -ms /bin/bash elasticsearch \
+        && yum install -y net-tools wget which openssl
+
 RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm" \
     && yum -y localinstall jdk-8u73-linux-x64.rpm  \
     && rm ~/jdk-8u73-linux-x64.rpm
@@ -29,9 +32,6 @@ RUN set -x \
 
 WORKDIR /opt
 
-
-RUN useradd -ms /bin/bash elasticsearch \
-        && yum install -y net-tools wget which openssl
 
 RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
