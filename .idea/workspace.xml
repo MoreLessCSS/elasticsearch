@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="354">
-              <caret line="33" column="227" lean-forward="true" selection-start-line="33" selection-start-column="227" selection-end-line="33" selection-end-column="227" />
+              <caret line="33" column="220" lean-forward="true" selection-start-line="33" selection-start-column="220" selection-end-line="33" selection-end-column="220" />
               <folding />
             </state>
           </provider>
@@ -589,7 +589,7 @@
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
-          <caret line="33" column="227" lean-forward="true" selection-start-line="33" selection-start-column="227" selection-end-line="33" selection-end-column="227" />
+          <caret line="33" column="220" lean-forward="true" selection-start-line="33" selection-start-column="220" selection-end-line="33" selection-end-column="220" />
           <folding />
         </state>
       </provider>
