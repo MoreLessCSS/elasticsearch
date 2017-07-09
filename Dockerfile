@@ -30,7 +30,7 @@ RUN useradd -ms /bin/bash elasticsearch \
         && yum install -y net-tools wget which openssl
 
 RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
-COPY /repos/*.* /etc/yum.repos.d/
+COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 RUN yum -y install elasticsearch
 
 COPY /config/*.* /opt/elasticsearch/config/
