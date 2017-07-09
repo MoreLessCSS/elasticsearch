@@ -35,14 +35,14 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearc
     && ln -s elasticsearch-${ES_VERSION} elasticsearch
 
 RUN cd /opt/elasticsearch/
-RUN mkdir data
-RUN chown elasticsearch:elasticsearch /data/
+RUN mkdir data \
+    chown elasticsearch:elasticsearch /data/
 
-RUN mkdir logs
-RUN chown elasticsearch:elasticsearch /logs/
+RUN mkdir logs \
+    chown elasticsearch:elasticsearch /logs/
 
-RUN mkdir config
-RUN chown elasticsearch:elasticsearch /config/
+RUN mkdir config \
+    chown elasticsearch:elasticsearch /config/
 
 
 RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
