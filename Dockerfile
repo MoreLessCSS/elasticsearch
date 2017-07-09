@@ -15,9 +15,10 @@ ENV ES_VERSION=5.4.0 \
     ELASTIC_PWD="getme" \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
-    HEAP_SIZE="4g" \
-    JAVA_VERSION= "8u31" \
-    BUILD_VERSION= "b13"
+    HEAP_SIZE="4g"
+
+ENV JAVA_VERSION 8u31
+ENV BUILD_VERSION b13
 
 RUN useradd -ms /bin/bash elasticsearch \
         && yum install -y net-tools wget which openssl
