@@ -37,6 +37,10 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearc
 RUN cd /opt/elasticsearch/
 RUN mkdir data
 RUN mkdir logs
+RUN chown elasticsearch:elasticsearch /opt/elasticsearch/data/
+RUN chown elasticsearch:elasticsearch /opt/elasticsearch/logs/
+RUN chown elasticsearch:elasticsearch /opt/elasticsearch/config/
+
 
 RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
 RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
