@@ -5,8 +5,7 @@ MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-CLUSTER_NAME="me" \
-CLUSTER_NAME="meCustomer" \
+    CLUSTER_NAME="ElasticCluster" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
     NETWORK_HOST=0.0.0.0 \
@@ -16,7 +15,7 @@ CLUSTER_NAME="meCustomer" \
     ELASTIC_PWD="getme" \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
-    HEAP_SIZE="1g"
+    HEAP_SIZE="4g"
 
 ### install gosu 1.9 for easy step-down from root
 RUN set -x \
