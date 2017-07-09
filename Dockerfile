@@ -36,7 +36,7 @@ RUN yum -y install elasticsearch
 COPY /config/*.* /etc/elasticsearch/
 
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
-RUN echo y | /usr/share/opt/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
+RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
 
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
     && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" /etc/elasticsearch/elasticsearch.yml
