@@ -28,10 +28,19 @@ WORKDIR /opt
 RUN useradd -ms /bin/bash elasticsearch \
         && yum install -y net-tools wget which openssl
 
-RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz \
-    && tar -xzf elasticsearch-${ES_VERSION}.tar.gz \
-    && rm elasticsearch-${ES_VERSION}.tar.gz \
-    && ln -s elasticsearch-${ES_VERSION} elasticsearch
+
+
+RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
+RUN echo '[elasticsearch-2.x]
+    name=Elasticsearch repository for 2.x packages
+    baseurl=http://packages.elastic.co/elasticsearch/2.x/centos
+    gpgcheck=1
+    gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+    enabled=1
+    ' | sudo tee /etc/yum.repos.d/elasticsearch.repo
+
+yum -y install elasticsearch
+
 
 COPY /config/*.* /opt/elasticsearch/config/
 
