@@ -36,10 +36,9 @@ RUN echo '[elasticsearch-2.x] \
     baseurl=http://packages.elastic.co/elasticsearch/2.x/centos \
     gpgcheck=1 \
     gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch \
-    enabled=1 \
-    ' | sudo tee /etc/yum.repos.d/elasticsearch.repo
+    enabled=1' | sudo tee /etc/yum.repos.d/elasticsearch.repo
 
-yum -y install elasticsearch
+RUN yum -y install elasticsearch
 
 
 COPY /config/*.* /opt/elasticsearch/config/
