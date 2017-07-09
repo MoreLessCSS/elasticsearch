@@ -15,7 +15,7 @@ ENV ES_VERSION=5.4.0 \
     ELASTIC_PWD="getme" \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
-    HEAP_SIZE="4g" \
+    HEAP_SIZE="4g"
     ES_JAVA_OPTS="-Xms4g -Xmx4g"
 
 
@@ -38,6 +38,7 @@ RUN yum -y install elasticsearch
 
 COPY /config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 COPY /logging/logging.yml /usr/share/elasticsearch/config/logging.yml
+COPY /etcconfig/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
 
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
