@@ -31,12 +31,12 @@ RUN useradd -ms /bin/bash elasticsearch \
 
 
 RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
-RUN echo '[elasticsearch-2.x]
-    name=Elasticsearch repository for 2.x packages
-    baseurl=http://packages.elastic.co/elasticsearch/2.x/centos
-    gpgcheck=1
-    gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
-    enabled=1
+RUN echo '[elasticsearch-2.x] \
+    name=Elasticsearch repository for 2.x packages \
+    baseurl=http://packages.elastic.co/elasticsearch/2.x/centos \
+    gpgcheck=1 \
+    gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch \
+    enabled=1 \
     ' | sudo tee /etc/yum.repos.d/elasticsearch.repo
 
 yum -y install elasticsearch
