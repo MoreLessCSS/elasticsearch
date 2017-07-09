@@ -36,7 +36,7 @@ COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 RUN yum -y install elasticsearch
 
 COPY /config/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-COPY /logging/logging.yml /usr/share/elasticsearch/config/logging.yml
+COPY /logging/logging.yml /etc/elasticsearch/elasticsearch.yml
 
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
