@@ -25,23 +25,23 @@ RUN set -x \
 
 WORKDIR /opt
 
+
 RUN useradd -ms /bin/bash elasticsearch \
         && yum install -y net-tools wget which openssl
 
-RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz \
-    && tar -xzf elasticsearch-${ES_VERSION}.tar.gz \
-    && rm elasticsearch-${ES_VERSION}.tar.gz \
-    && ln -s elasticsearch-${ES_VERSION} elasticsearch
+RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
+COPY /repos/*.* /etc/yum.repos.d/
+RUN yum -y install elasticsearch
 
 COPY /config/*.* /opt/elasticsearch/config/
-
-RUN cd /opt/elasticsearch/
 
 RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
 RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
 
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
     && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" ./elasticsearch/config/elasticsearch.yml
+
+vi /etc/sysconfig/elasticsearch
 
 RUN chown -R elasticsearch:elasticsearch /opt/
 
