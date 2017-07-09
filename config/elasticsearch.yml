@@ -10,7 +10,6 @@
 #xpack.graph.enabled: false
 #xpack.watcher.enabled: false
 
-
 cluster.name: elasticsearch
 node.name: ip-172-xx-xx-61
 path.conf: "/usr/share/elasticsearch/config/"
