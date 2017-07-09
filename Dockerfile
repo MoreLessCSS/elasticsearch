@@ -18,10 +18,6 @@ CLUSTER_NAME="meCustomer" \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
     HEAP_SIZE="1g"
 
-volumes:
-    - ./data:/opt/elasticsearch/data
-RUN chmod a+rwx -R /opt/elasticsearch/data
-
 ### install gosu 1.9 for easy step-down from root
 RUN set -x \
   && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
