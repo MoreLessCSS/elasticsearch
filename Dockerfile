@@ -44,7 +44,10 @@ RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s discov
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
     && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" /etc/elasticsearch/elasticsearch.yml
 
-RUN chown -R elasticsearch:elasticsearch /opt/
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/
+RUN chown -R elasticsearch:elasticsearch /var/log/elasticsearch/
+RUN chown -R elasticsearch:elasticsearch /etc/elasticsearch/
+RUN chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
