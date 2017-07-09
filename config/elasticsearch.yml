@@ -13,7 +13,7 @@
 
 cluster.name: elasticsearch
 node.name: ip-172-xx-xx-61
-#path.conf: "/etc/elasticsearch/", "/usr/share/elasticsearch/config/"
+[path.conf]: ["/etc/elasticsearch/", "/usr/share/elasticsearch/config/"]
 path.data: "/var/lib/elasticsearch/"
 path.logs: "/var/log/elasticsearch/"
 #bootstrap.memory_lock: true
