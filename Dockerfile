@@ -35,7 +35,7 @@ RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
 RUN yum -y install elasticsearch
 
-COPY /config/*.* /etc/elasticsearch/
+COPY /config/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 COPY /logging/logging.yml /usr/share/elasticsearch/config/logging.yml
 
 RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
