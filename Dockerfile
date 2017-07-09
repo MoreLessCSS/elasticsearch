@@ -1,5 +1,5 @@
 #Docker default CentosJava image
-FROM nimmis/java-centos
+FROM centos:latest
 
 MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
@@ -16,6 +16,10 @@ ENV ES_VERSION=5.4.0 \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
     HEAP_SIZE="4g"
+
+RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm \
+    && yum -y localinstall jdk-8u73-linux-x64.rpm  \
+    && rm ~/jdk-8u73-linux-x64.rpm
 
 ### install gosu 1.9 for easy step-down from root
 RUN set -x \

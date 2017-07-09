@@ -1,19 +1,5 @@
 ## Default Elasticsearch configuration from elasticsearch-docker.
 ## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
-#
-#cluster.name: "${CLUSTER_NAME}"
-#network.host: "${NETWORK_HOST}"
-
-# minimum_master_nodes need to be explicitly set when bound on a public IP
-# set to 1 to allow single node clusters
-# Details: https://github.com/elastic/elasticsearch/pull/17288
-#discovery.zen.minimum_master_nodes: "${MINIMUM_MASTER_NODES}"
-
-## Use single node discovery in order to disable production mode and avoid bootstrap checks
-## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
-#
-#discovery.type: single-node
-
 ## Disable X-Pack
 ## see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
 ##     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
@@ -24,10 +10,11 @@
 #xpack.graph.enabled: false
 #xpack.watcher.enabled: false
 
+
 cluster.name: elasticsearch
 node.name: ip-172-xx-xx-61
 # path.conf: "/opt/elasticsearch/config/"
-path.data: "/opt/elasticsearch/data/"
+path.data: "/var/lib/elasticsearch"
 # path.logs: "/opt/elasticsearch/logs/"
 #bootstrap.memory_lock: true
 cluster.routing.allocation.cluster_concurrent_rebalance: 4
