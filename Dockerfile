@@ -41,8 +41,6 @@ RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
     && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" ./elasticsearch/config/elasticsearch.yml
 
-vi /etc/sysconfig/elasticsearch
-
 RUN chown -R elasticsearch:elasticsearch /opt/
 
 ADD ./src/ /run/
