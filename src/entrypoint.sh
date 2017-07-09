@@ -8,7 +8,7 @@ export NODE_NAME=$HOSTNAME
 #/run/auth/certificates/gen_all.sh
 
 # Run as user "elasticsearch" if the command is "elasticsearch"
-if [ "$1" = '/opt/elasticsearch/bin/elasticsearch' -a "$(id -u)" = '0' ]; then
+if [ "$1" = '/usr/share/elasticsearch/bin/elasticsearch' -a "$(id -u)" = '0' ]; then
         chown -R elasticsearch:elasticsearch /opt/elasticsearch
         set -- gosu elasticsearch "$@"
         ES_JAVA_OPTS="-Des.network.host=$NETWORK_HOST  -Des.logger.level=INFO -Xms$HEAP_SIZE -Xmx$HEAP_SIZE" $@ &

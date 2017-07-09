@@ -77,4 +77,4 @@ EXPOSE 9300:9300
 USER elasticsearch
 ENTRYPOINT ["/run/entrypoint.sh"]
 
-CMD ["/run/entrypoint.sh"]
+CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
