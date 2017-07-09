@@ -28,6 +28,7 @@ discovery.ec2.availability_zones: eu-central-1a,eu-central-1b
 discovery.ec2.node_cache_time: 120s
 discovery.ec2.tag.ElasticClusterFunction: master-dev-elastic
 discovery.type: ec2
+discovery.zen.hosts_provider: ec2
 discovery.zen.join_timeout: 90s
 discovery.zen.minimum_master_nodes: 2
 discovery.zen.ping_timeout: 30s
