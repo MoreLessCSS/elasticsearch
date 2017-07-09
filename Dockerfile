@@ -20,7 +20,7 @@ ENV ES_VERSION=5.4.0 \
 RUN useradd -ms /bin/bash elasticsearch \
         && yum install -y net-tools wget which openssl
 
-RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm" \
+RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=220304_d54c1d3a095b4ff2b6607d096fa80163" \
     && yum -y localinstall jdk-8u73-linux-x64.rpm  \
     && rm ~/jdk-8u73-linux-x64.rpm
 

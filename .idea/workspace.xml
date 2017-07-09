@@ -31,8 +31,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="22" column="243" lean-forward="false" selection-start-line="22" selection-start-column="243" selection-end-line="22" selection-end-column="243" />
               <folding />
             </state>
           </provider>
@@ -589,8 +589,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="243" lean-forward="false" selection-start-line="22" selection-start-column="243" selection-end-line="22" selection-end-column="243" />
           <folding />
         </state>
       </provider>
