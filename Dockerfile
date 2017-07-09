@@ -1,5 +1,5 @@
 #Docker default CentosJava image
-FROM valerianomanassero/java-centos:latest
+FROM nimmis/java-centos
 
 MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
