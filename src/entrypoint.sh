@@ -16,8 +16,6 @@ else
         $@ &
 fi
 
-exec /usr/sbin/init
-
 /run/miscellaneous/wait_until_started.sh
 #/run/miscellaneous/index_level_settings.sh
 
