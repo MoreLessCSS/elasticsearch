@@ -1,5 +1,19 @@
 ## Default Elasticsearch configuration from elasticsearch-docker.
 ## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
+#
+#cluster.name: "${CLUSTER_NAME}"
+#network.host: "${NETWORK_HOST}"
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+#discovery.zen.minimum_master_nodes: "${MINIMUM_MASTER_NODES}"
+
+## Use single node discovery in order to disable production mode and avoid bootstrap checks
+## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+#
+#discovery.type: single-node
+
 ## Disable X-Pack
 ## see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
 ##     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
@@ -9,17 +23,13 @@
 #xpack.ml.enabled: false
 #xpack.graph.enabled: false
 #xpack.watcher.enabled: false
-
 cluster.name: elasticsearch
 node.name: ip-172-xx-xx-61
-path.conf: "/usr/share/elasticsearch/config/"
-path.data: "/var/lib/elasticsearch/"
-path.logs: "/var/log/elasticsearch/"
-#bootstrap.memory_lock: true
-cluster.routing.allocation.cluster_concurrent_rebalance: 4
-#cluster.routing.allocation.node_concurrent_incoming_recoveries: 100
-#cluster.routing.allocation.node_concurrent_outgoing_recoveries: 100
+#path.conf: "/opt/elasticsearch/config/"
+#path.data: "/opt/elasticsearch/data/"
+#path.logs: "/opt/elasticsearch/logs/"
 
+bootstrap.mlockall: true
 cloud.aws.protocol: https
 cloud.aws.region: eu-central-1
 cloud.node.auto_attributes: true
@@ -28,6 +38,7 @@ discovery.ec2.availability_zones: eu-central-1a,eu-central-1b
 discovery.ec2.node_cache_time: 120s
 discovery.ec2.tag.ElasticClusterFunction: master-dev-elastic
 discovery.type: ec2
+discovery.zen.hosts_provider: ec2
 discovery.zen.join_timeout: 90s
 discovery.zen.minimum_master_nodes: 2
 discovery.zen.ping_timeout: 30s

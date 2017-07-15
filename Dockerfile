@@ -5,7 +5,8 @@ MAINTAINER me <me@me.com>
 LABEL Description="elasticsearch 5.4"
 
 ENV ES_VERSION=5.4.0 \
-    CLUSTER_NAME="ElasticCluster" \
+CLUSTER_NAME="me" \
+CLUSTER_NAME="meCustomer" \
     NODE_NAME="elkmaster1" \
     HTTP_PORT_ES=9200 \
     NETWORK_HOST=0.0.0.0 \
@@ -15,39 +16,34 @@ ENV ES_VERSION=5.4.0 \
     ELASTIC_PWD="getme" \
     GOSU_VERSION=1.9 \
     JAVA_HOME="/usr/java/jre1.8.0_131/" \
-    HEAP_SIZE="4g" \
-    ES_JAVA_OPTS="-Xms4g -Xmx4g"
+    HEAP_SIZE="2g" \
+    JVM_OPTS="-Xmx4g -Xms4g -XX:MaxPermSize=1024m" \
+    ES_JAVA_OPTS="-Xmx2g -Xms2g"
 
 
-RUN useradd -ms /bin/bash elasticsearch \
-        && yum install -y net-tools wget which openssl
-### install gosu 1.9 for easy step-down from root
-RUN set -x \
-  && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" \
-  && chmod +x /usr/local/bin/gosu \
-  && gosu nobody true
 
 WORKDIR /opt
 
-RUN rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
-COPY /repos/elasticsearch.repo /etc/yum.repos.d/elasticsearch.repo
-RUN yum -y install elasticsearch
+RUN useradd -ms /bin/bash elasticsearch \
+        && yum install -y net-tools wget which openssl
 
-COPY /config/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
-COPY /logging/logging.yml /usr/share/elasticsearch/config/logging.yml
+RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz \
+    && tar -xzf elasticsearch-${ES_VERSION}.tar.gz \
+    && rm elasticsearch-${ES_VERSION}.tar.gz \
+    && ln -s elasticsearch-${ES_VERSION} elasticsearch
 
+COPY /config/*.* /opt/elasticsearch/config/
 
-RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
-RUN echo y | /usr/share/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
+RUN cd /opt/elasticsearch/
+
+RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s repository-s3
+RUN echo y | /opt/elasticsearch/bin/elasticsearch-plugin install -s discovery-ec2
 
 RUN LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4) \
-    && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" /usr/share/elasticsearch/config/elasticsearch.yml
+    && sed -i  "s/\\(^node\.name:\\).*/\\1 $LOCAL_IP/" ./elasticsearch/config/elasticsearch.yml
 
-RUN chown -R elasticsearch:elasticsearch /var/lib/elasticsearch
-RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/
-RUN chown -R elasticsearch:elasticsearch /var/log/elasticsearch/
-RUN chown -R elasticsearch:elasticsearch /etc/elasticsearch/
 
+RUN chown -R elasticsearch:elasticsearch /opt/
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
@@ -56,6 +52,6 @@ EXPOSE 9200:9200
 EXPOSE 9300:9300
 
 USER elasticsearch
-ENTRYPOINT ["/run/entrypoint.sh"]
 
-CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
+
+CMD ["/opt/elasticsearch/bin/elasticsearch"]
